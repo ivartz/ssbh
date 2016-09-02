@@ -1,5 +1,5 @@
 # program executable name 
-TARGET = sort_args 
+TARGET = list_test 
 
 # compiler flags 
 CFLAGS = -g -Wall 
@@ -8,7 +8,9 @@ CFLAGS = -g -Wall
 LDFLAGS = -g 
 
 # list of sources 
-SOURCES = $(shell find -name "*.c") 
+SOURCES = $(shell find -name "*.c")
+#SOURCES = list_test.c 
+
 
 # default rule, to compile everything 
 all: $(TARGET) 
@@ -25,4 +27,5 @@ $(TARGET): $(OBJECTS)
 	gcc $(CFLAGS) -c -o $@ $< 
 
 # cleaning clean: 
-rm -f $(TARGET) $(OBJECTS) 
+clean:
+	rm -f $(TARGET) $(OBJECTS) 

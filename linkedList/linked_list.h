@@ -17,6 +17,7 @@ struct list {
 
 /* Abstract data type for lists */
 typedef struct list *list_t;
+typedef struct node *node_t;
 
 /* Create an empty list */
 list_t list_create();

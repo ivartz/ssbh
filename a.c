@@ -4,7 +4,11 @@
 
 void allocate(int value) {
     int *ptr = NULL;
-    ptr = malloc(100000 * sizeof(int));
+    ptr = malloc(1024*1024 * sizeof(int));
+    if (ptr == NULL){
+        perror("Error: ");
+        exit(1);
+    }
     *ptr = value;
     printf("test of allocated memory: %i\n", value);
 }
