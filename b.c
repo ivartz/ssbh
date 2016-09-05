@@ -1,42 +1,30 @@
-#include  <stdio.h>
-#include  <sys/types.h>
+#include <stdio.h>
 #include <unistd.h>
-
+#include <sys/times.h>
+#include <pthread.h>
 #define   MAX_COUNT  200
 
-void  ChildProcess(void);                /* child process prototype  */
-void  ParentProcess(void);               /* parent process prototype */
+// gcc -o 3dd 3dd.c -pthread -lrt
+
+// gcc -o b b.c -pthread
 
 int gloabVar;
 
-void  main(void)
-{
-
-     gloabVar = 1;
-
-     pid_t  pid;
-
-     pid = fork();
-    
-     if (pid == 0) 
-          ChildProcess();
-     else 
-          ParentProcess();
-}
-
-void  ChildProcess(void)
+static void  *ChildProcess(void *data)
 {
      int   i;
 
      for (i = 1; i <= MAX_COUNT; i++){
+          usleep(10);
           printf("This line is from child, value = %d\n", i);
           printf("This line is from child, global value = %d\n", gloabVar);
           gloabVar++;
      }
      printf("   *** Child process is done ***\n");
+     pthread_exit(NULL);
 }
 
-void  ParentProcess(void)
+static void  *ParentProcess(void*data)
 {
      int   i;
 
@@ -46,4 +34,23 @@ void  ParentProcess(void)
           gloabVar++;
      }
      printf("*** Parent is done ***\n");
+     pthread_exit(NULL);
+}
+
+
+
+int main(){
+
+    gloabVar = 1;
+    pthread_t child_process;
+    void *data;
+    pthread_create(&child_process, NULL, ChildProcess, (void*) data);
+
+    pthread_t parent_process;
+    pthread_create(&parent_process, NULL, ParentProcess, (void*) data);
+
+
+
+    pthread_join(child_process, NULL);
+    pthread_join(parent_process, NULL);
 }

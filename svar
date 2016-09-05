@@ -1,3 +1,1 @@
-1a) Minnelekasje. Minnet blir allokert til det ikke er mer igjen, pc-krasj.
-
-
+a) fork() lar begge prosessene kjøre samtidig (parent starter først), mens ved vfork() kjøres kun ene prosessen først, så den andre. fork() gir feil resultat ang global variabel, mens vfork ga riktig. fork() lager helt nye, adskilte prosesser, mens vfork() bruker samme globale variabler
