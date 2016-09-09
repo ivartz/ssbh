@@ -123,7 +123,7 @@ void* Marx(){
 
 
 int main (){
-    pthread_t sokra, ari, ka, pla, ma;
+    pthread_t sokra[5]
     
 
     pthread_mutex_init(&fork1, NULL);
@@ -133,7 +133,10 @@ int main (){
     pthread_mutex_init(&fork5, NULL);
     pthread_mutex_init(&waiter, NULL);
 
+    for int i = 0;i<5;i++{
+        pthread_create(sokra+i, NULL, Sokrates, NULL);  
 
+    }
     pthread_create(&sokra, NULL, Sokrates, NULL);
     pthread_create(&ari, NULL, Aristoteles, NULL);
     pthread_create(&pla, NULL, Platon, NULL);
@@ -141,7 +144,6 @@ int main (){
     pthread_create(&ma, NULL, Marx, NULL);
 
 
-    pthread_join(sokra, NULL);
     pthread_join(ari, NULL);
     pthread_join(ka, NULL);
     pthread_join(pla, NULL);

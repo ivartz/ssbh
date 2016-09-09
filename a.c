@@ -16,7 +16,7 @@ void  main(void)
 
      pid_t  pid;
 
-     pid = fork();
+     pid = vfork();
     
      if (pid == 0) 
           ChildProcess();
